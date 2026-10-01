@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Site d'Amine</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, lightblue, white);
+            font-family: Arial;
+            text-align: center;
+            margin: 0;
+        }
+
+        .connexion {
+            background-color: white;
+            width: 300px;
+            margin: 80px auto;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px gray;
+        }
+
+        h1 {
+            color: darkblue;
+        }
+
+        p {
+            color: gray;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid gray;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            background-color: darkblue;
+            color: white;
+            font-size: 16px;
+        }
+
+        .google {
+            background-color: white;
+            color: black;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="connexion">
+
+        <h1>Bienvenue 👋</h1>
+
+        <p>Connecte-toi à ton compte</p>
+
+        <input id="nom" type="text" placeholder="Nom d'utilisateur">
+
+        <input id="motdepasse" type="password" placeholder="Mot de passe">
+
+        <button onclick="connexion()">Se connecter</button>
+
+        <p>OU</p>
+
+        <button class="google">
+            🔵 Continuer avec Google
+        </button>
+
+        <p id="message"></p>
+
+    </div>
+
+
+    <script>
+
+        function connexion() {
+
+            let nom = document.getElementById("nom").value;
+
+            let motdepasse =
+                document.getElementById("motdepasse").value;
+
+            if (nom === "Amine" && motdepasse === "1234") {
+
+                document.getElementById("message").textContent =
+                    "Connexion réussie ! 🎉";
+
+            } else {
+
+                document.getElementById("message").textContent =
+                    "Nom ou mot de passe incorrect ❌";
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>
