@@ -6,7 +6,6 @@
 
     <title>Site d'Amine</title>
 
-    <!-- Google Identity Services -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <style>
@@ -63,9 +62,19 @@
             margin-top: 10px;
         }
 
+        #profil {
+            display: none;
+        }
+
+        #photo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-top: 15px;
+        }
+
         #message {
             font-weight: bold;
-            margin-top: 15px;
         }
     </style>
 </head>
@@ -74,52 +83,68 @@
 
 <div class="connexion">
 
-    <h1>Bienvenue 👋</h1>
+    <div id="connexionPage">
 
-    <p>Connecte-toi à ton compte</p>
+        <h1>Bienvenue 👋</h1>
 
-    <input
-        id="nom"
-        type="text"
-        placeholder="Nom d'utilisateur"
-    >
+        <p>Connecte-toi à ton compte</p>
 
-    <input
-        id="motdepasse"
-        type="password"
-        placeholder="Mot de passe"
-    >
+        <input
+            id="nom"
+            type="text"
+            placeholder="Nom d'utilisateur"
+        >
 
-    <button class="bouton" onclick="connexion()">
-        Se connecter
-    </button>
+        <input
+            id="motdepasse"
+            type="password"
+            placeholder="Mot de passe"
+        >
 
-    <p>OU</p>
+        <button class="bouton" onclick="connexion()">
+            Se connecter
+        </button>
 
-    <!-- Configuration Google -->
-    <div
-        id="g_id_onload"
-        data-client_id="698062032997-3jimrhbg2hh8q6miaiubivn4qiv21488.apps.googleusercontent.com"
-        data-callback="connexionGoogle"
-        data-auto_prompt="false">
-    </div>
+        <p>OU</p>
 
-    <!-- Vrai bouton Google -->
-    <div class="google">
         <div
-            class="g_id_signin"
-            data-type="standard"
-            data-size="large"
-            data-theme="outline"
-            data-text="continue_with"
-            data-shape="rectangular"
-            data-use_fedcm_for_button="true">
+            id="g_id_onload"
+            data-client_id="698062032997-3jimrhbg2hh8q6miaiubivn4qiv21488.apps.googleusercontent.com"
+            data-callback="connexionGoogle"
+            data-auto_prompt="false">
         </div>
+
+        <div class="google">
+            <div
+                class="g_id_signin"
+                data-type="standard"
+                data-size="large"
+                data-theme="outline"
+                data-text="continue_with"
+                data-shape="rectangular"
+                data-use_fedcm_for_button="true">
+            </div>
+        </div>
+
+        <p id="message"></p>
+
     </div>
 
-    <p id="message"></p>
+
+    <div id="profil">
+
+        <h1>Bienvenue ! 🎉</h1>
+
+        <img id="photo" src="" alt="Photo de profil">
+
+        <h2 id="prenom"></h2>
+
+        <p>Tu es connecté avec Google ✅</p>
+
+    </div>
 
 </div>
+
 
 <script>
 
@@ -144,14 +169,30 @@ function connexion() {
     }
 }
 
+
 function connexionGoogle(response) {
 
-    document.getElementById("message").textContent =
-        "Connexion avec Google réussie ! 🎉";
+    // Décoder les informations envoyées par Google
+    const donnees = JSON.parse(
+        atob(
+            response.credential.split(".")[1]
+        )
+    );
 
-    document.getElementById("message").style.color = "green";
+    // Afficher la page du profil
+    document.getElementById("connexionPage").style.display =
+        "none";
 
-    console.log("Connexion Google reçue");
+    document.getElementById("profil").style.display =
+        "block";
+
+    // Afficher le nom
+    document.getElementById("prenom").textContent =
+        donnees.name;
+
+    // Afficher la photo
+    document.getElementById("photo").src =
+        donnees.picture;
 }
 
 </script>
