@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Site d'Amine</title>
+
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <style>
         body {
-            background: linear-gradient(135deg, lightblue, white);
-            font-family: Arial;
-            text-align: center;
             margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, lightblue, white);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .connexion {
-            background-color: white;
             width: 300px;
-            margin: 80px auto;
+            background: white;
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 5px 20px gray;
+            text-align: center;
         }
 
         h1 {
@@ -29,80 +38,123 @@
         }
 
         input {
-            width: 90%;
+            width: 100%;
+            box-sizing: border-box;
             padding: 12px;
             margin: 8px 0;
-            border-radius: 8px;
             border: 1px solid gray;
+            border-radius: 8px;
         }
 
-        button {
+        .bouton {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
             border: none;
             border-radius: 8px;
-            background-color: darkblue;
+            background: darkblue;
             color: white;
             font-size: 16px;
         }
 
         .google {
-            background-color: white;
-            color: black;
-            border: 1px solid gray;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        #message {
+            font-weight: bold;
+            margin-top: 15px;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="connexion">
+<div class="connexion">
 
-        <h1>Bienvenue 👋</h1>
+    <h1>Bienvenue 👋</h1>
 
-        <p>Connecte-toi à ton compte</p>
+    <p>Connecte-toi à ton compte</p>
 
-        <input id="nom" type="text" placeholder="Nom d'utilisateur">
+    <input
+        id="nom"
+        type="text"
+        placeholder="Nom d'utilisateur"
+    >
 
-        <input id="motdepasse" type="password" placeholder="Mot de passe">
+    <input
+        id="motdepasse"
+        type="password"
+        placeholder="Mot de passe"
+    >
 
-        <button onclick="connexion()">Se connecter</button>
+    <button class="bouton" onclick="connexion()">
+        Se connecter
+    </button>
 
-        <p>OU</p>
+    <p>OU</p>
 
-        <button class="google">
-            🔵 Continuer avec Google
-        </button>
-
-        <p id="message"></p>
-
+    <!-- Configuration Google -->
+    <div
+        id="g_id_onload"
+        data-client_id="698062032997-3jimrhbg2hh8q6miaiubivn4qiv21488.apps.googleusercontent.com"
+        data-callback="connexionGoogle"
+        data-auto_prompt="false">
     </div>
 
+    <!-- Vrai bouton Google -->
+    <div class="google">
+        <div
+            class="g_id_signin"
+            data-type="standard"
+            data-size="large"
+            data-theme="outline"
+            data-text="continue_with"
+            data-shape="rectangular"
+            data-use_fedcm_for_button="true">
+        </div>
+    </div>
 
-    <script>
+    <p id="message"></p>
 
-        function connexion() {
+</div>
 
-            let nom = document.getElementById("nom").value;
+<script>
 
-            let motdepasse =
-                document.getElementById("motdepasse").value;
+function connexion() {
 
-            if (nom === "Amine" && motdepasse === "1234") {
+    let nom = document.getElementById("nom").value;
+    let motdepasse = document.getElementById("motdepasse").value;
 
-                document.getElementById("message").textContent =
-                    "Connexion réussie ! 🎉";
+    if (nom === "Amine" && motdepasse === "1234") {
 
-            } else {
+        document.getElementById("message").textContent =
+            "Connexion réussie ! 🎉";
 
-                document.getElementById("message").textContent =
-                    "Nom ou mot de passe incorrect ❌";
+        document.getElementById("message").style.color = "green";
 
-            }
-        }
+    } else {
 
-    </script>
+        document.getElementById("message").textContent =
+            "Nom ou mot de passe incorrect ❌";
+
+        document.getElementById("message").style.color = "red";
+    }
+}
+
+function connexionGoogle(response) {
+
+    document.getElementById("message").textContent =
+        "Connexion avec Google réussie ! 🎉";
+
+    document.getElementById("message").style.color = "green";
+
+    console.log("Connexion Google reçue");
+}
+
+</script>
 
 </body>
 </html>
