@@ -4,198 +4,211 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Site d'Amine</title>
+    <title>VYRON</title>
 
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- Google -->
+    <script src="https://accounts.google.com/gsi/client"
+            async
+            defer></script>
 
     <style>
         body {
             margin: 0;
-            min-height: 100vh;
-            background: linear-gradient(135deg, lightblue, white);
+            background: black;
+            color: white;
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .connexion {
-            width: 300px;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px gray;
             text-align: center;
         }
 
-        h1 {
-            color: darkblue;
+        /* MENU */
+        nav {
+            background: #111;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        p {
-            color: gray;
+        .logo {
+            color: #D4AF37;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 4px;
         }
 
-        input {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid gray;
-            border-radius: 8px;
-        }
-
-        .bouton {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 8px;
-            background: darkblue;
+        .menu a {
             color: white;
-            font-size: 16px;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .menu a:hover {
+            color: #D4AF37;
+        }
+
+        /* ACCUEIL */
+        .accueil {
+            padding: 70px 20px;
+        }
+
+        h1 {
+            color: #D4AF37;
+            font-size: 60px;
+            letter-spacing: 10px;
+        }
+
+        /* CONNEXION */
+        .connexion {
+            background: white;
+            color: black;
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .connexion h2 span {
+            color: #D4AF37;
         }
 
         .google {
+            margin-top: 25px;
             display: flex;
             justify-content: center;
-            margin-top: 10px;
         }
 
+        /* PROFIL */
         #profil {
             display: none;
         }
 
         #photo {
-            width: 90px;
-            height: 90px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            margin-top: 15px;
+            border: 3px solid #D4AF37;
+            margin: 15px;
         }
 
-        #message {
+        #nomUtilisateur {
+            font-size: 24px;
             font-weight: bold;
+        }
+
+        .deconnexion {
+            padding: 12px 25px;
+            background: black;
+            color: white;
+            border: 2px solid #D4AF37;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .deconnexion:hover {
+            background: #D4AF37;
+            color: black;
         }
     </style>
 </head>
 
 <body>
 
-<div class="connexion">
+    <!-- MENU -->
+    <nav>
+        <div class="logo">VYRON</div>
 
-    <div id="connexionPage">
-
-        <h1>Bienvenue 👋</h1>
-
-        <p>Connecte-toi à ton compte</p>
-
-        <input
-            id="nom"
-            type="text"
-            placeholder="Nom d'utilisateur"
-        >
-
-        <input
-            id="motdepasse"
-            type="password"
-            placeholder="Mot de passe"
-        >
-
-        <button class="bouton" onclick="connexion()">
-            Se connecter
-        </button>
-
-        <p>OU</p>
-
-        <div
-            id="g_id_onload"
-            data-client_id="698062032997-3jimrhbg2hh8q6miaiubivn4qiv21488.apps.googleusercontent.com"
-            data-callback="connexionGoogle"
-            data-auto_prompt="false">
+        <div class="menu">
+            <a href="#">Accueil</a>
+            <a href="#">Streetwear</a>
+            <a href="#">Nouveautés</a>
+            <a href="#">🛒 Panier</a>
         </div>
+    </nav>
 
-        <div class="google">
+    <!-- ACCUEIL -->
+    <section class="accueil">
+        <h1>VYRON</h1>
+        <p>STREETWEAR • STYLE • ATTITUDE</p>
+    </section>
+
+    <!-- CONNEXION -->
+    <section class="connexion">
+
+        <!-- AVANT CONNEXION -->
+        <div id="connexionPage">
+
+            <h2>
+                Connexion <span>VYRON</span>
+            </h2>
+
+            <p>Connecte-toi avec Google</p>
+
             <div
-                class="g_id_signin"
-                data-type="standard"
-                data-size="large"
-                data-theme="outline"
-                data-text="continue_with"
-                data-shape="rectangular"
-                data-use_fedcm_for_button="true">
+                id="g_id_onload"
+                data-client_id="698062032997-3jimrhbg2hh8q6miaiubivn4qiv21488.apps.googleusercontent.com"
+                data-callback="connexionGoogle"
+                data-auto_prompt="false">
             </div>
+
+            <div class="google">
+
+                <div
+                    class="g_id_signin"
+                    data-type="standard"
+                    data-size="large"
+                    data-theme="outline"
+                    data-text="continue_with"
+                    data-shape="rectangular">
+                </div>
+
+            </div>
+
         </div>
 
-        <p id="message"></p>
+        <!-- APRÈS CONNEXION -->
+        <div id="profil">
 
-    </div>
+            <h2>
+                Bienvenue chez <span>VYRON</span> 🎉
+            </h2>
 
+            <img id="photo" src="" alt="Photo">
 
-    <div id="profil">
+            <p id="nomUtilisateur"></p>
 
-        <h1>Bienvenue ! 🎉</h1>
+            <p>✅ Connecté avec Google</p>
 
-        <img id="photo" src="" alt="Photo de profil">
+            <button
+                class="deconnexion"
+                onclick="deconnexion()">
+                Se déconnecter
+            </button>
 
-        <h2 id="prenom"></h2>
+        </div>
 
-        <p>Tu es connecté avec Google ✅</p>
+    </section>
 
-    </div>
+    <script>
 
-</div>
+        function connexionGoogle(response) {
 
+            // Récupérer les informations Google
+            let partie = response.credential.split(".")[1];
 
-<script>
+            // Corriger le format
+            partie = partie
+                .replace(/-/g, "+")
+                .replace(/_/g, "/");
 
-function connexion() {
+            // Lire les informations
+            let donnees = JSON.parse(atob(partie));
 
-    let nom = document.getElementById("nom").value;
-    let motdepasse = document.getElementById("motdepasse").value;
+            // Cacher la connexion
+            document.getElementById("connexionPage").style.display = "none";
 
-    if (nom === "Amine" && motdepasse === "1234") {
+            // Afficher le profil
+            document.getElementById("profil").style.display = "block";
 
-        document.getElementById("message").textContent =
-            "Connexion réussie ! 🎉";
-
-        document.getElementById("message").style.color = "green";
-
-    } else {
-
-        document.getElementById("message").textContent =
-            "Nom ou mot de passe incorrect ❌";
-
-        document.getElementById("message").style.color = "red";
-    }
-}
-
-
-function connexionGoogle(response) {
-
-    // Décoder les informations envoyées par Google
-    const donnees = JSON.parse(
-        atob(
-            response.credential.split(".")[1]
-        )
-    );
-
-    // Afficher la page du profil
-    document.getElementById("connexionPage").style.display =
-        "none";
-
-    document.getElementById("profil").style.display =
-        "block";
-
-    // Afficher le nom
-    document.getElementById("prenom").textContent =
-        donnees.name;
-
-    // Afficher la photo
-    document.getElementById("photo").src =
-        donnees.picture;
-}
-
-</script>
-
-</body>
-</html>
+            // Afficher le nom
+            document.getElementById("nomUtilisateur").textContent =
+               
